@@ -206,7 +206,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = [ cfg.package ];
 
-    xdg.configFile."broot" = {
+    xdg.configFile."broot" = mkIf (cfg.settings == { }) { # FIXME
       recursive = true;
       source = pkgs.symlinkJoin {
         name = "xdg.configFile.broot";
